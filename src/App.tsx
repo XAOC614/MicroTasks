@@ -4,6 +4,7 @@ import {Todolist} from "./Todolist";
 import {Header} from "./site/Header";
 import {Body} from "./site/Body";
 import {Footer} from "./site/Footer";
+import {NewComponent} from "./NewComponent";
 
 
 function App() {
@@ -23,13 +24,14 @@ function App() {
 
     return (
         <div className="App">
-            <Header titleForHeader = {'NEW HEADER'}/>
-            <Body titleForBody = {'NEW BODY'}/>
-            <div>
-            <Todolist title={title1} titleNew={100200} tasks={tasks1}/>
-            <Todolist title={title2} tasks={tasks2}/>
-            </div>
-            <Footer titleForFooter = {'NEW FOOTER'}/>
+            <NewComponent/>
+            {/*<Header titleForHeader = {'NEW HEADER'}/>*/}
+            {/*<Body titleForBody = {'NEW BODY'}/>*/}
+            {/*<div>*/}
+            {/*<Todolist title={title1} titleNew={100200} tasks={tasks1}/>*/}
+            {/*<Todolist title={title2} tasks={tasks2}/>*/}
+            {/*</div>*/}
+            {/*<Footer titleForFooter = {'NEW FOOTER'}/>*/}
         </div>
     );
 }
