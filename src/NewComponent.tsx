@@ -22,7 +22,7 @@ export const NewComponent = () => {
             {topCars.map((el , index) => {
                 return(
                     <table>
-                        <td>{index}</td>
+                        <td>{index+1}</td>
                         <td>{el.manufacturer}</td>
                         <td>{el.model}</td>
                     </table>
