@@ -1,45 +1,36 @@
 import React from "react";
+import {FilterType} from "./App";
 
-// type NewComponentPropsType ={
-//     students: Array <studentType>
-// }
-// type studentType ={
-//     id:number
-//     name:string
-//     age:number
-//
-// }
+type NewComponentType = {
+    callback: (nameButton:FilterType) => void
+    current:Array<Money>
+}
+type Money ={
+    banknots: string
+    value: number
+    number: string
+}
 
-export const NewComponent = () => {
-    const topCars = [
-        {manufacturer:'BMW', model:'m5cs'},
-        {manufacturer:'Mercedes', model:'e63s'},
-        {manufacturer:'Audi', model:'rs6'}
-    ]
 
-    return(
-        <div>
-            {topCars.map((el , index) => {
+export const NewComponent = (props:NewComponentType) => {
+    return (
+        <>
+        <ul>
+            {props.current.map((el,index)=> {
                 return(
-                    <table>
-                        <td>{index+1}</td>
-                        <td>{el.manufacturer}</td>
-                        <td>{el.model}</td>
-                    </table>
+                    <li key={index}>
+                        <span>  {el.banknots}  </span>
+                        <span>  {el.value}  </span>
+                        <span>  {el.number}  </span>
+                    </li>
                 )
             })}
-            {/*<ul>*/}
-            {/*    {props.students.map((el) => {*/}
-            {/*        return( <li key={el.id}>*/}
-            {/*                <span>{el.name}</span>*/}
-            {/*                <span>  age:  {el.age}</span>*/}
-            {/*            </li>*/}
-            {/*        )*/}
-            {/*    }*/}
-            {/*    )*/}
-            {/*    }*/}
-            {/*   */}
-            {/*</ul>*/}
-        </div>
-    )
+        </ul>
+    <div style={{marginLeft: '35px'}}>
+        <button onClick={()=>props.callback('all')}> all </button>
+        <button onClick={()=>props.callback('RUBLS')}> RUBLS </button>
+        <button onClick={()=>props.callback('Dollars')}> Dollars </button>
+    </div>
+        </>
+    );
 }
