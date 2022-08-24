@@ -1,51 +1,42 @@
 import React, {useState} from 'react';
 import './App.css';
-import {NewComponent} from "./NewComponent";
+import {FullInput,} from "./site/Fullinput";
+import {Input} from "./site/Input";
 
-export type FilterType = 'all'|'RUBLS'|'Dollars'
+import {Button1} from "./site/Button1";
+
+
 
 function App() {
-    const [money, setMoney] = useState([
-        { banknots: 'Dollars', value: 100, number: ' a1234567890' },
-        { banknots: 'Dollars', value: 50, number: ' z1234567890' },
-        { banknots: 'RUBLS', value: 100, number: ' w1234567890' },
-        { banknots: 'Dollars', value: 100, number: ' e1234567890' },
-        { banknots: 'Dollars', value: 50, number: ' c1234567890' },
-        { banknots: 'RUBLS', value: 100, number: ' r1234567890' },
-        { banknots: 'Dollars', value: 50, number: ' x1234567890' },
-        { banknots: 'RUBLS', value: 50, number: ' v1234567890' },
+    let[message,setMessage] = useState([
+        {message: ' message 1'},
+        {message: ' message 2'},
+        {message: ' message 3'}
     ])
-    const [a,setA] = useState<FilterType>('all')
 
-    let currentMoney = money
-    if( a  ==='RUBLS'){
-        currentMoney = money.filter((fm)=>fm.banknots==='RUBLS')
-    }if( a  ==='Dollars'){
-        currentMoney = money.filter((fm)=>fm.banknots==='Dollars')
+    let [title,setTitle]= useState('')
+
+
+    const addTitle = (title:string) => {
+        let newMessage = {message :title}
+        setMessage([newMessage,...message])
     }
-    const onClickFilterHandler = (nameButton:FilterType) => {
-        setA(nameButton);
+    const callBackButtonHandler = () => {
+        addTitle(title)
+        setTitle('')
     }
     return (
-      <>
-          <NewComponent  callback={onClickFilterHandler} current={currentMoney} />
-          {/*<ul>*/}
-          {/*    {currentMoney.map((el,index)=> {*/}
-          {/*        return(*/}
-          {/*            <li key={index}>*/}
-          {/*                <span>  {el.banknots}  </span>*/}
-          {/*                <span>  {el.value}  </span>*/}
-          {/*                <span>  {el.number}  </span>*/}
-          {/*            </li>*/}
-          {/*        )*/}
-          {/*    })}*/}
-          {/*</ul>*/}
-          {/*<div style={{marginLeft: '35px'}}>*/}
-          {/*    <button onClick={()=>onClickFilterHandler('all')}> all </button>*/}
-          {/*    <button onClick={()=>onClickFilterHandler('RUBLS')}> RUBLS </button>*/}
-          {/*    <button onClick={()=>onClickFilterHandler('Dollars')}> Dollars </button>*/}
-          {/*</div>*/}
-      </>
+      <div className = {'App'}>
+          {/*<FullInput addTitle={addTitle}/>*/}
+          <Input title={title} setTitle={setTitle} />
+          <Button1 name={'+'} callBack={callBackButtonHandler}/>
+          {message.map((el , index)=> {
+              return(
+                  <div key={index}>{el.message}</div>
+              )
+          })}
+
+      </div>
     );
 }
 
